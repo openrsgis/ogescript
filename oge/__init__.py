@@ -43,6 +43,8 @@ from .table import Table
 import datetime
 from .carbon import carbonEmission
 from .sheet import Sheet
+from .coverageArray import CoverageArray
+from .mlmodel import MLmodel
 # Tell pytype not to worry about dynamic attributes.
 _HAS_DYNAMIC_ATTRIBUTES = True
 
@@ -155,6 +157,7 @@ def initialize(
         Dictionary.initialize()
         Table.initialize()
         Sheet.initialize()
+        MLmodel.initialize()
         # Terrain.initialize()
         _InitializeGeneratedClasses()
         _InitializeUnboundMethods()
@@ -178,6 +181,7 @@ def Reset():
     # Date.reset()
     Dictionary.reset()
     # Terrain.reset()
+    MLmodel.reset()
     _ResetGeneratedClasses()
     global Algorithms
     Algorithms = _AlgorithmsContainer()
@@ -290,6 +294,8 @@ def _Promote(arg, klass):
         return Number(arg)
     elif klass == 'Collections':
         return Collections(arg)
+    elif klass == 'MLmodel':
+        return MLmodel(arg)
     elif klass in globals():
         cls = globals()[klass]
         ctor = ApiFunction.lookupInternal(klass)

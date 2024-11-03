@@ -7,6 +7,7 @@ oge/collection.py
 oge/collections.py
 oge/computedobject.py
 oge/coverage.py
+oge/coverageArray.py
 oge/coverageCollection.py
 oge/cube.py
 oge/customfunction.py
@@ -26,6 +27,7 @@ oge/image.py
 oge/imagecollection.py
 oge/item.py
 oge/mapclient.py
+oge/mlmodel.py
 oge/ndwi_cube.py
 oge/oge_date.py
 oge/oge_exception.py
@@ -38,6 +40,7 @@ oge/processes.py
 oge/processresult.py
 oge/serializer.py
 oge/service.py
+oge/sheet.py
 oge/table.py
 oge.egg-info/PKG-INFO
 oge.egg-info/SOURCES.txt

@@ -57,7 +57,7 @@ class Sheet(computedobject.ComputedObject):
                         image_params[key] = args[key]
                     else:
                         request[key] = args[key]
-            super(Coverage, self).__init__(
+            super(Sheet, self).__init__(
                 apifunction.ApiFunction.lookup('Coverage.load'), image_params)
         elif isinstance(args, dict) and args.__contains__("baseUrl"):
             keys_to_extract = set(['baseUrl', 'sheetID'])

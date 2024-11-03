@@ -13,7 +13,7 @@ from . import processes
 from . import table
 from . import cube
 from . import sheet
-
+from . import coverageArray
 
 class Service(element.Element):
     # 类变量
@@ -180,6 +180,22 @@ class Service(element.Element):
             'productID': productID,
         }
         return table.Table(param)
+
+    """
+    查询指定Id的覆盖数据集
+    """
+    def getCoverageArray(self, productID, datetime=None, bbox=None, cloudCoverMin=None, cloudCoverMax=None,
+                         bbox_crs=None):
+        param = {
+            'baseUrl': self._url,
+            'productID': productID,
+            'datetime': datetime,
+            'bbox': bbox,
+            'bboxCrs': bbox_crs,
+            'cloudCoverMin': cloudCoverMin,
+            'cloudCoverMax': cloudCoverMax,
+        }
+        return coverageArray.CoverageArray(param)
 
     @classmethod
     def initialize(cls, url="http://localhost"):

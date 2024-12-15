@@ -20,6 +20,8 @@ class Function(encodable.EncodableFunction):
 
     # A function used to type-coerce arguments and return values.
     _promoter = staticmethod(lambda value, type_name: value)
+    def __init__(self, name):
+        self.name = name
 
     @staticmethod
     def _registerPromoter(promoter):
@@ -100,14 +102,24 @@ class Function(encodable.EncodableFunction):
         # Promote all recognized args.
         promoted_args = {}
         known = set()
+        # for spec in specs:
+        #     name = spec['name']
+        #     if name in args:
+        #         promoted_args[name] = Function._promoter(args[name], spec['type'])
+        #     elif not spec.get('optional'):
+        #         raise oge_exception.OGException(
+        #             'Required argument (%s) missing to function: %s'
+        #             % (name, self.name))
+        #     known.add(name)
         for spec in specs:
             name = spec['name']
             if name in args:
                 promoted_args[name] = Function._promoter(args[name], spec['type'])
+            elif 'default' in spec and not (self.name.endswith(".addStyles") or self.name.endswith(".export")):
+                default_value = spec['default']
+                promoted_args[name] = Function._promoter(default_value, spec['type'])
             elif not spec.get('optional'):
-                raise oge_exception.OGException(
-                    'Required argument (%s) missing to function: %s'
-                    % (name, self.name))
+                raise oge_exception.OGException('Required argument (%s) missing to function: %s'%(name, self.name))
             known.add(name)
 
         # Check for unknown arguments.

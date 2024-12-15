@@ -51,6 +51,7 @@ class ApiFunction(function.Function):
         # The signature of this API function.
         self._signature = copy.deepcopy(opt_signature)
         self._signature['name'] = name
+        super().__init__(name)
 
     def __eq__(self, other):
         return (isinstance(other, ApiFunction) and

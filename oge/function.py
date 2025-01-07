@@ -115,6 +115,7 @@ class Function(encodable.EncodableFunction):
             name = spec['name']
             if name in args:
                 promoted_args[name] = Function._promoter(args[name], spec['type'])
+            # 支持前端参数缺省，部分需要传入dict作为参数的算子不支持
             elif 'default' in spec and not (self.name.endswith(".addStyles") or self.name.endswith(".export")):
                 default_value = spec['default']
                 promoted_args[name] = Function._promoter(default_value, spec['type'])

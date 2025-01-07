@@ -14,6 +14,7 @@ from . import table
 from . import cube
 from . import sheet
 from . import coverageArray
+from . import mlmodel
 
 class Service(element.Element):
     # 类变量
@@ -180,6 +181,17 @@ class Service(element.Element):
             'productID': productID,
         }
         return table.Table(param)
+
+    """
+    查询指定Id的机器学习模型
+    """
+
+    def getModel(self, modelID):
+        param = {
+            'baseUrl': self._url,
+            'modelID': modelID,
+        }
+        return mlmodel.MLmodel(param)
 
     """
     查询指定Id的覆盖数据集
